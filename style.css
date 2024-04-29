@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+
 
 * {
     box-sizing: border-box;
@@ -80,21 +82,38 @@ section .color:nth-child(3){
 }
 
 .contents h2 {
+    font-family: "Noto Sans KR", sans-serif;
     position: relative;
     color: #fff;
     font-size: 24px;
     font-weight: 600;
     letter-spacing: 1px;
-    margin-bottom: 40px;
     text-align: center;
 }
 
-.contents .word,
+.contents .word {
+    font-family: "Noto Sans KR", sans-serif;
+    position: relative;
+    color: #fff;
+    margin-top: 20px;
+    font-size: 36px;
+    font-weight: 600;
+    text-align: center;
+}
 .contents .definition,
 .contents .example {
     position: relative;
     color: #fff;
     margin-top: 20px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.contents .examplekr {
+    font-family: "Noto Sans KR", sans-serif;
+    position: relative;
+    color: #fff;
+    margin-top: 10px;
     font-weight: 600;
     text-align: center;
 }
@@ -116,14 +135,60 @@ section .color:nth-child(3){
     border: 1px solid rgba(255,255,255,0.5);
     border-right: 1px solid rgba(255,255,255,0.2);
     border-bottom: 1px solid rgba(255,255,255,0.2);  
-    animation-duration: 0.3s;
-    animation-name: clickAnimation;
 }
-@keyframes clickAnimation {
+/* @keyframes clickAnimation {
     0% { transform: scale(1); }
     50% { transform: scale(1.1); }
     100% { transform: scale(1); }
 }
 .contents > button:hover {
     transform: scale(1.1);
+}
+
+*/
+.contents > button::after{
+    content: " ";
+    z-index: -1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    left: 0;
+    top: 0;
+    border-radius: 25px;
+}
+
+.contents > button::before {
+    content: " ";
+    background: linear-gradient(45deg,#65a585,#b991bd,#ec479a,#fffd87,#00d2ff);
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 1000%;
+    z-index: -1;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    filter: blur(8px);
+    animation: glowing 20s linear infinite;
+    transition: opacity .3s ease-in-out;
+    border-radius: 25px;
+    opacity: 0;
+}
+
+@keyframes glowing {
+    0% {background-position: 0 0;}
+    50% {background-position: 400% 0;}
+    1000% {background-position: 0 0;}
+}
+
+.contents > button::before{
+    opacity:1;
+}
+
+.contents > button:active:after{
+    background: transparent;
+}
+
+.contents > button:active {
+    color: #fff;
 }
