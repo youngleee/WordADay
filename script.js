@@ -1,31 +1,24 @@
-// Fetch a new word of the day from your backend API
-function fetchWordOfTheDay() {
-    // Code to fetch data from your backend API
-    // Example: return fetch('your-api-url').then(response => response.json());
-    return Promise.resolve({
-        word: "KoreanWord",
-        definition: "Definition in English",
-        example: "Example sentence in German"
-    });
+// Define an array of word objects
+const words = [
+    { word: "Word1", definition: "Definition 1", example: "Example 1" },
+    { word: "Word2", definition: "Definition 2", example: "Example 2" },
+    { word: "Word3", definition: "Definition 3", example: "Example 3" }
+];
+
+// Function to display a random word
+function displayRandomWord() {
+    // Generate a random index within the range of the words array length
+    const randomIndex = Math.floor(Math.random() * words.length);
+    const randomWord = words[randomIndex];
+
+    // Update the content of the elements with the random word's information
+    document.getElementById("word").textContent = randomWord.word;
+    document.getElementById("definition").textContent = randomWord.definition;
+    document.getElementById("example").textContent = randomWord.example;
 }
 
-// Display the word of the day on the webpage
-function displayWordOfTheDay(wordData) {
-    document.getElementById('word').textContent = wordData.word;
-    document.getElementById('definition').textContent = "Definition: " + wordData.definition;
-    document.getElementById('example').textContent = "Example (German): " + wordData.example;
-}
+// Add event listener to the "New Word" button
+document.getElementById("newWordBtn").addEventListener("click", displayRandomWord);
 
-// Event listener for the Next Word button
-document.getElementById('nextButton').addEventListener('click', () => {
-    fetchWordOfTheDay().then(wordData => {
-        displayWordOfTheDay(wordData);
-    });
-});
-
-// Fetch and display the word of the day when the page loads
-window.onload = () => {
-    fetchWordOfTheDay().then(wordData => {
-        displayWordOfTheDay(wordData);
-    });
-};
+// Display a random word when the page loads
+displayRandomWord();
